@@ -58,7 +58,13 @@ public class HelloScheduler {
 		//创建schedule实列
 		SchedulerFactory sFactory=new StdSchedulerFactory();
 		Scheduler  scheduler=sFactory.getScheduler();
+		//启动任务
 		scheduler.start();
+		//挂起任务   当我们再次调用start()方法时就可以重新启动任务
+		//scheduler.standby();
+		//关闭任务可以传入参数bulean  true等待所有的job任务执行完毕再关闭，false直接关闭 默认就是false  这个是不能再次调用start()方法的
+		scheduler.shutdown();
+		//返回一个Date  指的是最近要出发的一次执行时间
 		scheduler.scheduleJob(jobDetail, trigger);
 	}
 	
